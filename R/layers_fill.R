@@ -1,5 +1,6 @@
 #' Add a fill layer to the map
 #' @param source A Mapbox source. Uses the source from the \link{mapboxer} object if no source is supplied.
+#' @param sourceLayer A vector tile layer - only required for vector tile layers
 #' @param filter A filter expression that is applied to the \code{source}.
 #' @param fill_antialias (paint) Whether or not the fill should be antialiased.
 #' @param fill_color (paint) The color of the filled part of this layer.
@@ -26,6 +27,7 @@
 add_fill_layer <- function(
                            map,
                            source = NULL,
+                           sourceLayer = NULL,
                            filter = NULL,
                            fill_antialias = TRUE,
                            fill_color = NULL,
@@ -51,7 +53,7 @@ add_fill_layer <- function(
     "fill-sort-key" = fill_sort_key,
     "visibility" = ifelse(visibility, "visible", "none")
   )
-  style <- create_layer_style(id, "fill", source, filter, paint, layout)
+  style <- create_layer_style(id, "fill", source, filter, paint, layout, sourceLayer)
   map %>%
     add_layer(style, popup)
 }

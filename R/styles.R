@@ -106,14 +106,27 @@ set_style <- function(map, style) {
   map
 }
 
-create_layer_style <- function(id, type, source, filter, paint, layout) {
-  list(
-    id = id,
-    type = type,
-    source = source,
-    filter = filter,
-    paint = purrr::compact(paint),
-    layout = purrr::compact(layout)
-  ) %>%
-    purrr::compact()
+create_layer_style <- function(id, type, source, filter, paint, layout, sourceLayer) {
+  if (is.null(sourceLayer)) {
+    list(
+      id = id,
+      type = type,
+      source = source,
+      filter = filter,
+      paint = purrr::compact(paint),
+      layout = purrr::compact(layout)
+    ) %>%
+      purrr::compact()
+  } else {
+    list(
+      id = id,
+      type = type,
+      source = source,
+      `source-layer` = sourceLayer,
+      filter = filter,
+      paint = purrr::compact(paint),
+      layout = purrr::compact(layout)
+    ) %>%
+      purrr::compact()
+  }
 }
