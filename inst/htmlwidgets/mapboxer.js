@@ -637,7 +637,11 @@
             )
         },
         onEvent: function(t){
-          this.on(t.eventtype, t.layerId, t.eventhandler)
+          if(t.layerId == FALSE) {
+            this.on(t.eventtype, t.eventhandler)
+          } else {
+            this.on(t.eventtype, t.layerId, t.eventhandler)
+          }
         }
     }
 }
