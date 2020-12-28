@@ -637,7 +637,7 @@
             )
         },
         onEvent: function(t){
-          if(t.layerId == FALSE) {
+          if(t.layerId == false) {
             this.on(t.eventtype, t.eventhandler)
           } else {
             this.on(t.eventtype, t.layerId, t.eventhandler)
